@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP KEY GENERATOR</title>
+    <style>
+        body { background-color: #000; color: #fff; font-family: sans-serif; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { border: 2px solid #ff0000; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px #ff0000; background: #0a0a0a; width: 320px; }
+        h1 { color: #ff0000; font-size: 20px; margin-bottom: 20px; }
+        #keyDisplay { background: #1a1a1a; border: 2px dashed #ff0000; padding: 15px; margin-bottom: 20px; font-size: 18px; color: #00ff00; font-weight: bold; word-break: break-all; min-height: 30px; }
+        .btn-gen { background: #ff0000; color: #fff; border: none; padding: 12px; font-weight: bold; cursor: pointer; border-radius: 8px; width: 100%; margin-bottom: 10px; }
+        .btn-copy { background: #444; color: #fff; border: none; padding: 10px; cursor: pointer; border-radius: 5px; width: 100%; }
+        .btn-gen:disabled { background: #550000; opacity: 0.6; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>VIP KEY GENERATOR</h1>
+    <div id="keyDisplay">Generating...</div>
+    <button id="genBtn" class="btn-gen" onclick="generateKey()">GENERATE KEY</button>
+    <button class="btn-copy" onclick="copyKey()">COPY KEY</button>
+    <p id="status" style="color: #ff0000; font-size: 12px; margin-top: 10px;"></p>
+</div>
+
+<script>
+    // ডিভাইসের ইউনিক আইডি তৈরির লজিক
+    function getDeviceId() {
+        const info = navigator.userAgent + screen.width + screen.height;
+        let hash = 0;
+        for (let i = 0; i < info.length; i++) {
+            hash = (hash << 5) - hash + info.charCodeAt(i);
+            hash |= 0; 
+        }
+        return Math.abs(hash).toString(36).toUpperCase();
+    }
+
+    const currentDeviceId = getDeviceId();
+
+    // পেজ লোড হলেই ডিভাইসের অবস্থা দেখাবে
+    window.onload = () => {
+        document.getElementById('keyDisplay').innerText = "Device ID: " + currentDeviceId;
+    };
+
+    function generateKey() {
+        if (sessionStorage.getItem('done') === 'yes') {
+            document.getElementById('status').innerText = "Limit! Re-open link for new key.";
+            return;
+        }
+
+        const randomStr = Math.random().toString(36).substring(2, 7).toUpperCase();
+        // পাসওয়ার্ডের সাথে ডিভাইস আইডি জুড়ে দেওয়া হলো
+        const finalKey = "VIP-" + randomStr + "-" + currentDeviceId;
+
+        document.getElementById('keyDisplay').innerText = finalKey;
+        document.getElementById('genBtn').disabled = true;
+        sessionStorage.setItem('done', 'yes');
+    }
+
+    function copyKey() {
+        const text = document.getElementById('keyDisplay').innerText;
+        if(text.includes("Device ID")) {
+            alert("Please generate a key first!");
+            return;
+        }
+        navigator.clipboard.writeText(text);
+        alert("Key Copied!");
+    }
+</script>
+
+</body>
+</html>
