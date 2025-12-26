@@ -6,12 +6,69 @@
     <title>AD FREE FIRE KEY GENERATOR</title>
     <style>
         body { background-color: #000; color: #fff; font-family: sans-serif; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .container { border: 2px solid #ff0000; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px #ff0000; background: #0a0a0a; width: 320px; }
-        h1 { color: #ff0000; font-size: 20px; margin-bottom: 20px; }
-        #keyDisplay { background: #1a1a1a; border: 2px dashed #ff0000; padding: 15px; margin-bottom: 20px; font-size: 18px; color: #00ff00; font-weight: bold; word-break: break-all; min-height: 30px; }
-        .btn-gen { background: #ff0000; color: #fff; border: none; padding: 12px; font-weight: bold; cursor: pointer; border-radius: 8px; width: 100%; margin-bottom: 10px; }
-        .btn-copy { background: #444; color: #fff; border: none; padding: 10px; cursor: pointer; border-radius: 5px; width: 100%; }
+        .container { 
+            border: 2px solid #ff0000; 
+            padding: 30px; 
+            border-radius: 15px; 
+            box-shadow: 0 0 20px #ff0000; 
+            background: #0a0000; 
+            width: 320px; 
+            animation: customRainbow 10s linear infinite;
+        }
+        h1 { 
+            color: #ff0000; 
+            font-size: 20px; 
+            margin-bottom: 20px; 
+            text-shadow: 0 0 10px #ff0000; 
+            animation: customRainbow 10s linear infinite;
+        }
+        #keyDisplay { 
+            background: #1a0000; 
+            border: 2px dashed #ff0000; 
+            padding: 15px; 
+            margin-bottom: 20px; 
+            font-size: 18px; 
+            color: #ffff00; 
+            font-weight: bold; 
+            word-break: break-all; 
+            min-height: 30px; 
+            box-shadow: 0 0 15px #ff0000; 
+            animation: customRainbow 10s linear infinite;
+        }
+        .btn-gen { 
+            background: #ff0000; 
+            color: #ffff00; 
+            border: none; 
+            padding: 12px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            border-radius: 8px; 
+            width: 100%; 
+            margin-bottom: 10px; 
+            box-shadow: 0 0 15px #ff0000; 
+            animation: customRainbow 10s linear infinite;
+        }
+        .btn-copy { 
+            background: #ffff00; 
+            color: #ff0000; 
+            border: none; 
+            padding: 10px; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            width: 100%; 
+            box-shadow: 0 0 10px #ffff00; 
+            animation: customRainbow 10s linear infinite;
+        }
         .btn-gen:disabled { background: #550000; opacity: 0.6; }
+        #status { color: #ffff00; text-shadow: 0 0 8px #ff0000; animation: customRainbow 10s linear infinite; }
+
+        @keyframes customRainbow {
+            0% { color: #ff0000; border-color: #ff0000; box-shadow: 0 0 20px #ff0000; text-shadow: 0 0 10px #ff0000; background: #1a0000; } /* লাল */
+            25% { color: #ffaa00; border-color: #ffaa00; box-shadow: 0 0 20px #ffaa00; text-shadow: 0 0 10px #ffaa00; background: #1a0f00; } /* কমলা */
+            50% { color: #ffff00; border-color: #ffff00; box-shadow: 0 0 20px #ffff00; text-shadow: 0 0 10px #ffff00; background: #1a1a00; } /* হলুদ */
+            75% { color: #00ff00; border-color: #00ff00; box-shadow: 0 0 20px #00ff00; text-shadow: 0 0 10px #00ff00; background: #001a00; } /* সবুজ */
+            100% { color: #8b4513; border-color: #8b4513; box-shadow: 0 0 20px #8b4513; text-shadow: 0 0 10px #8b4513; background: #1a0a00; } /* বাদামী */
+        }
     </style>
 </head>
 <body>
@@ -21,46 +78,86 @@
     <div id="keyDisplay">Generating...</div>
     <button id="genBtn" class="btn-gen" onclick="generateKey()">GENERATE KEY</button>
     <button class="btn-copy" onclick="copyKey()">COPY KEY</button>
-    <p id="status" style="color: #ff0000; font-size: 12px; margin-top: 10px;"></p>
+    <p id="status" style="font-size: 12px; margin-top: 10px;"></p>
 </div>
 
 <script>
-    // ডিভাইসের ইউনিক আইডি তৈরির লজিক
-    function getDeviceId() {
-        const info = navigator.userAgent + screen.width + screen.height;
+    // তোমার Airtable PAT Token এবং Base ID
+    const AIRTABLE_TOKEN = "pat7VbFhSLuF7Exjs.29d10f3ff1a2551c5a79cb8c4b40367631e1a4c981f8f292cd0678a082138993"; // pat... পেস্ট করো
+    const BASE_ID = "appHbQG5ueJjplXDR"; // তোমারটা
+    const TABLE_NAME = "Keys";
+
+    function getHWID() {
+        const info = navigator.userAgent + navigator.language + screen.width + screen.height + new Date().getTimezoneOffset();
         let hash = 0;
         for (let i = 0; i < info.length; i++) {
             hash = (hash << 5) - hash + info.charCodeAt(i);
-            hash |= 0; 
+            hash |= 0;
         }
         return Math.abs(hash).toString(36).toUpperCase();
     }
 
-    const currentDeviceId = getDeviceId();
+    const hwid = getHWID();
 
-    // পেজ লোড হলেই ডিভাইসের অবস্থা দেখাবে
     window.onload = () => {
-        document.getElementById('keyDisplay').innerText = "Device ID: " + currentDeviceId;
+        document.getElementById('keyDisplay').innerText = "Device HWID: " + hwid;
     };
 
-    function generateKey() {
-        if (sessionStorage.getItem('done') === 'yes') {
-            document.getElementById('status').innerText = "Limit! Re-open link for new key.";
-            return;
-        }
-
-        const randomStr = Math.random().toString(36).substring(2, 7).toUpperCase();
-        // পাসওয়ার্ডের সাথে ডিভাইস আইডি জুড়ে দেওয়া হলো
-        const finalKey = "AD FREE KEY-" + randomStr + "-" + currentDeviceId;
-
-        document.getElementById('keyDisplay').innerText = finalKey;
+    async function generateKey() {
+        document.getElementById('status').innerText = "Generating & saving...";
         document.getElementById('genBtn').disabled = true;
-        sessionStorage.setItem('done', 'yes');
+
+        const randomPart = Math.random().toString(36).substring(2, 8).toUpperCase();
+        const newKey = "AD FREE KEY-" + randomPart + "-" + hwid;
+
+        try {
+            const searchUrl = `https://api.airtable.com/v0/\( {BASE_ID}/ \){TABLE_NAME}?filterByFormula={HWID}='${hwid}'`;
+            const searchResponse = await fetch(searchUrl, {
+                headers: { 'Authorization': 'Bearer ' + AIRTABLE_TOKEN }
+            });
+            const searchData = await searchResponse.json();
+
+            if (searchData.records && searchData.records.length > 0) {
+                for (const record of searchData.records) {
+                    await fetch(`https://api.airtable.com/v0/\( {BASE_ID}/ \){TABLE_NAME}/${record.id}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Authorization': 'Bearer ' + AIRTABLE_TOKEN,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            fields: { Status: "Inactive" }
+                        })
+                    });
+                }
+            }
+
+            await fetch(`https://api.airtable.com/v0/\( {BASE_ID}/ \){TABLE_NAME}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + AIRTABLE_TOKEN,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    fields: {
+                        Password: newKey,
+                        HWID: hwid,
+                        Status: "Active"
+                    }
+                })
+            });
+
+            document.getElementById('keyDisplay').innerText = newKey;
+            document.getElementById('status').innerText = "Key generated & saved successfully!";
+        } catch (error) {
+            document.getElementById('status').innerText = "Network error, try again.";
+            document.getElementById('genBtn').disabled = false;
+        }
     }
 
     function copyKey() {
         const text = document.getElementById('keyDisplay').innerText;
-        if(text.includes("Device ID")) {
+        if (text.includes("Device HWID") || text.includes("Generating")) {
             alert("Please generate a key first!");
             return;
         }
