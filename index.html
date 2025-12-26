@@ -3,123 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD FREE FIRE VIP - DISCO MODE</title>
+    <title>AD FREE FIRE VIP</title>
     <style>
-        /* ব্যাকগ্রাউন্ডে দ্রুত অনেকগুলো রঙ পরিবর্তনের এনিমেশন */
+        /* পুরো ব্যাকগ্রাউন্ডের রঙ পরিবর্তনের এনিমেশন */
         @keyframes rainbow-bg {
-            0% { background: #ff0000; }
-            12% { background: #ff7f00; }
-            24% { background: #ffff00; }
-            36% { background: #00ff00; }
-            48% { background: #00ffff; }
-            60% { background: #0000ff; }
-            72% { background: #8b00ff; }
-            84% { background: #ff00ff; }
-            100% { background: #ff0000; }
+            0% { background-color: #ff0000; }
+            17% { background-color: #ff7f00; }
+            33% { background-color: #ffff00; }
+            50% { background-color: #00ff00; }
+            67% { background-color: #0000ff; }
+            84% { background-color: #8b00ff; }
+            100% { background-color: #ff0000; }
         }
 
-        /* বর্ডারের জন্য আলাদা দ্রুত এনিমেশন */
-        @keyframes border-flash {
-            0% { border-color: #fff; box-shadow: 0 0 40px #fff; }
-            50% { border-color: #000; box-shadow: 0 0 10px #000; }
-            100% { border-color: #fff; box-shadow: 0 0 40px #fff; }
+        /* লিকুইড বলগুলোর রঙ পরিবর্তনের এনিমেশন */
+        @keyframes hue-shift {
+            from { filter: hue-rotate(0deg); }
+            to { filter: hue-rotate(360deg); }
         }
 
         body { 
-            /* এখানে এনিমেশনের স্পিড ১ সেকেন্ড (1s) দেওয়া হয়েছে, যা খুব দ্রুত রঙ বদলাবে */
-            animation: rainbow-bg 1.5s linear infinite; 
-            color: #fff; 
-            font-family: 'Arial Black', sans-serif; 
-            text-align: center; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            margin: 0; 
-            transition: 0.2s;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            /* ব্যাকগ্রাউন্ড রঙ ৫ সেকেন্ড পর পর পূর্ণ চক্রে বদলাবে */
+            animation: rainbow-bg 8s linear infinite alternate;
+            overflow: hidden;
+            position: relative;
         }
 
+        /* ব্যাকগ্রাউন্ডে ভাসমান লিকুইড বল */
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: linear-gradient(135deg, #00f2ff, #7000ff, #ff0000);
+            filter: blur(80px);
+            border-radius: 50%;
+            z-index: -1;
+            animation: move 10s infinite alternate, hue-shift 5s infinite linear;
+            opacity: 0.6;
+        }
+
+        @keyframes move {
+            0% { transform: translate(-30%, -30%); }
+            100% { transform: translate(30%, 30%); }
+        }
+
+        /* মেইন ৩ডি গ্লাস কার্ড */
         .container { 
-            border: 6px solid #fff; 
-            padding: 40px 30px; 
-            border-radius: 30px; 
-            background: rgba(0, 0, 0, 0.85); /* টেক্সট পরিষ্কার দেখার জন্য কালো ব্যাকগ্রাউন্ড */
+            background: rgba(0, 0, 0, 0.85); /* ডার্ক গ্লাস */
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 50px 35px; 
+            border-radius: 50px; 
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6); 
             width: 320px; 
-            animation: border-flash 0.5s infinite; /* বর্ডারটি ফ্ল্যাশ করবে */
+            text-align: center;
+            z-index: 10;
         }
 
         h1 { 
-            font-size: 26px; 
-            margin-bottom: 25px; 
-            color: #fff;
-            text-shadow: 2px 2px #000;
-            letter-spacing: 1px;
+            color: #fff; 
+            font-size: 22px; 
+            margin-bottom: 30px; 
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
-
+        
         #keyDisplay { 
-            background: #222; 
-            border: 3px solid #00ff00; 
-            padding: 15px; 
-            margin-bottom: 25px; 
-            font-size: 24px; 
-            color: #ffff00; 
+            background: rgba(0, 0, 0, 0.5); 
+            border-radius: 20px;
+            padding: 25px; 
+            margin-bottom: 30px; 
+            font-size: 22px; 
+            color: #00ffcc; 
             font-weight: bold; 
-            min-height: 50px; 
+            min-height: 30px; 
             display: flex; 
             align-items: center; 
-            justify-content: center;
-            border-radius: 15px;
-            box-shadow: inset 0 0 10px #000;
+            justify-content: center; 
+            box-shadow: inset 0 0 15px rgba(0,255,204,0.2);
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
         }
 
         .btn-gen { 
-            background: #fff; 
+            background: #fff;
             color: #000; 
             border: none; 
-            padding: 15px; 
+            padding: 18px; 
             font-weight: 900; 
             cursor: pointer; 
-            border-radius: 10px; 
+            border-radius: 20px; 
             width: 100%; 
-            margin-bottom: 12px; 
-            font-size: 18px; 
+            margin-bottom: 15px; 
+            font-size: 15px; 
             text-transform: uppercase;
-            box-shadow: 0 5px 0 #888;
-        }
-        .btn-gen:active {
-            box-shadow: 0 2px 0 #444;
-            transform: translateY(3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            transition: 0.3s;
         }
 
+        .btn-gen:active { transform: scale(0.95); }
+
         .btn-copy { 
-            background: #ff0000; 
+            background: rgba(255, 255, 255, 0.1);
             color: #fff; 
-            border: none; 
+            border: 1px solid rgba(255, 255, 255, 0.4);
             padding: 12px; 
             cursor: pointer; 
-            border-radius: 10px; 
+            border-radius: 15px; 
             width: 100%; 
             font-weight: bold; 
-            font-size: 14px;
+            display: none;
         }
 
         #status { 
-            font-size: 15px; 
-            margin-top: 15px; 
-            font-weight: 900;
-            color: #00ff00;
-            text-transform: uppercase;
+            color: #fff; 
+            font-size: 12px; 
+            margin-top: 20px; 
+            font-weight: bold;
+            opacity: 0.8;
         }
+
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
+<div class="blob"></div>
+
 <div class="container">
     <h1>AD FREE FIRE VIP</h1>
-    <div id="keyDisplay">---</div>
-    <button id="genBtn" class="btn-gen" onclick="generateKey()">GENERATE KEY</button>
-    <button class="btn-copy" onclick="copyKey()">COPY KEY</button>
-    <p id="status"></p>
+    <div id="keyDisplay">DEVICE READY</div>
+    
+    <button id="genBtn" class="btn-gen" onclick="generateKey()">GENERATE NEW KEY</button>
+    <button id="copyBtn" class="btn-copy" onclick="copyKey()">COPY KEY</button>
+    
+    <p id="status">Global Secure Access</p>
 </div>
 
 <script>
@@ -129,11 +154,12 @@
 
     async function generateKey() {
         const btn = document.getElementById('genBtn');
+        const copyBtn = document.getElementById('copyBtn');
         const status = document.getElementById('status');
         const display = document.getElementById('keyDisplay');
 
-        status.innerText = "WAITING...";
         btn.disabled = true;
+        status.innerText = "Processing VIP Key...";
 
         const newPassword = "AD-VIP-" + Math.random().toString(36).substring(2, 8).toUpperCase();
 
@@ -144,32 +170,31 @@
                     'Authorization': 'Bearer ' + AIRTABLE_TOKEN,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    "fields": { "Password": newPassword }
-                })
+                body: JSON.stringify({ "fields": { "Password": newPassword } })
             });
 
             if (response.ok) {
                 display.innerText = newPassword;
-                status.innerText = "DONE!";
-                btn.disabled = false;
+                status.innerText = "Key Generated! Link Used.";
+                status.style.color = "#00ffcc";
+                
+                btn.classList.add('hidden');
+                copyBtn.style.display = "block";
             } else {
-                status.innerText = "ERROR!";
+                status.innerText = "Error! Reload Page.";
                 btn.disabled = false;
             }
         } catch (error) {
-            status.innerText = "NETWORK ERROR!";
+            status.innerText = "Network Error!";
             btn.disabled = false;
         }
     }
 
     function copyKey() {
         const text = document.getElementById('keyDisplay').innerText;
-        if (text.includes("AD-VIP-")) {
+        if (text.startsWith("AD-VIP-")) {
             navigator.clipboard.writeText(text);
-            alert("🔥 Key Copied!");
-        } else {
-            alert("Generate key first!");
+            alert("✨ VIP Key Copied!");
         }
     }
 </script>
