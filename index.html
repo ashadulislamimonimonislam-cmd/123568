@@ -3,29 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AD FREE FIRE VIP</title>
+    <title>AD FREE FIRE VIP - DISCO MODE</title>
     <style>
-        body { background-color: #000; color: #fff; font-family: sans-serif; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .container { border: 2px solid #ff0000; padding: 30px; border-radius: 15px; box-shadow: 0 0 20px #ff0000; background: #0a0000; width: 320px; }
-        h1 { color: #ff0000; font-size: 22px; margin-bottom: 20px; }
-        #keyDisplay { background: #1a0000; border: 2px dashed #ff0000; padding: 15px; margin-bottom: 20px; font-size: 18px; color: #ffff00; font-weight: bold; min-height: 40px; display: flex; align-items: center; justify-content: center; }
-        .btn-gen { background: #ff0000; color: #fff; border: none; padding: 15px; font-weight: bold; cursor: pointer; border-radius: 8px; width: 100%; margin-bottom: 10px; font-size: 16px; }
-        .btn-copy { background: #ffff00; color: #000; border: none; padding: 10px; cursor: pointer; border-radius: 5px; width: 100%; font-weight: bold; }
-        #status { color: #00ff00; font-size: 13px; margin-top: 15px; }
+        /* ব্যাকগ্রাউন্ডে দ্রুত অনেকগুলো রঙ পরিবর্তনের এনিমেশন */
+        @keyframes rainbow-bg {
+            0% { background: #ff0000; }
+            12% { background: #ff7f00; }
+            24% { background: #ffff00; }
+            36% { background: #00ff00; }
+            48% { background: #00ffff; }
+            60% { background: #0000ff; }
+            72% { background: #8b00ff; }
+            84% { background: #ff00ff; }
+            100% { background: #ff0000; }
+        }
+
+        /* বর্ডারের জন্য আলাদা দ্রুত এনিমেশন */
+        @keyframes border-flash {
+            0% { border-color: #fff; box-shadow: 0 0 40px #fff; }
+            50% { border-color: #000; box-shadow: 0 0 10px #000; }
+            100% { border-color: #fff; box-shadow: 0 0 40px #fff; }
+        }
+
+        body { 
+            /* এখানে এনিমেশনের স্পিড ১ সেকেন্ড (1s) দেওয়া হয়েছে, যা খুব দ্রুত রঙ বদলাবে */
+            animation: rainbow-bg 1.5s linear infinite; 
+            color: #fff; 
+            font-family: 'Arial Black', sans-serif; 
+            text-align: center; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            margin: 0; 
+            transition: 0.2s;
+        }
+
+        .container { 
+            border: 6px solid #fff; 
+            padding: 40px 30px; 
+            border-radius: 30px; 
+            background: rgba(0, 0, 0, 0.85); /* টেক্সট পরিষ্কার দেখার জন্য কালো ব্যাকগ্রাউন্ড */
+            width: 320px; 
+            animation: border-flash 0.5s infinite; /* বর্ডারটি ফ্ল্যাশ করবে */
+        }
+
+        h1 { 
+            font-size: 26px; 
+            margin-bottom: 25px; 
+            color: #fff;
+            text-shadow: 2px 2px #000;
+            letter-spacing: 1px;
+        }
+
+        #keyDisplay { 
+            background: #222; 
+            border: 3px solid #00ff00; 
+            padding: 15px; 
+            margin-bottom: 25px; 
+            font-size: 24px; 
+            color: #ffff00; 
+            font-weight: bold; 
+            min-height: 50px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            border-radius: 15px;
+            box-shadow: inset 0 0 10px #000;
+        }
+
+        .btn-gen { 
+            background: #fff; 
+            color: #000; 
+            border: none; 
+            padding: 15px; 
+            font-weight: 900; 
+            cursor: pointer; 
+            border-radius: 10px; 
+            width: 100%; 
+            margin-bottom: 12px; 
+            font-size: 18px; 
+            text-transform: uppercase;
+            box-shadow: 0 5px 0 #888;
+        }
+        .btn-gen:active {
+            box-shadow: 0 2px 0 #444;
+            transform: translateY(3px);
+        }
+
+        .btn-copy { 
+            background: #ff0000; 
+            color: #fff; 
+            border: none; 
+            padding: 12px; 
+            cursor: pointer; 
+            border-radius: 10px; 
+            width: 100%; 
+            font-weight: bold; 
+            font-size: 14px;
+        }
+
+        #status { 
+            font-size: 15px; 
+            margin-top: 15px; 
+            font-weight: 900;
+            color: #00ff00;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <h1>AD FREE FIRE VIP</h1>
-    <div id="keyDisplay">Device Ready</div>
-    <button id="genBtn" class="btn-gen" onclick="generateKey()">GENERATE NEW KEY</button>
+    <div id="keyDisplay">---</div>
+    <button id="genBtn" class="btn-gen" onclick="generateKey()">GENERATE KEY</button>
     <button class="btn-copy" onclick="copyKey()">COPY KEY</button>
     <p id="status"></p>
 </div>
 
 <script>
-    // আপনার দেওয়া সর্বশেষ তথ্য (Token, Base, Table)
     const AIRTABLE_TOKEN = "patxb58MtubUEILUA.dbdc4b684abac0f6135890f2e988cd2b2e3a5039f05668ccbfd3f6cc14063d6b"; 
     const BASE_ID = "appuNYS6oV0I8hNwh"; 
     const TABLE_ID = "tblIPWhp9UhPbnAEI"; 
@@ -35,11 +132,9 @@
         const status = document.getElementById('status');
         const display = document.getElementById('keyDisplay');
 
-        status.style.color = "#ffff00";
-        status.innerText = "Connecting to Server...";
+        status.innerText = "WAITING...";
         btn.disabled = true;
 
-        // একটি নতুন র‍্যান্ডম পাসওয়ার্ড
         const newPassword = "AD-VIP-" + Math.random().toString(36).substring(2, 8).toUpperCase();
 
         try {
@@ -50,36 +145,31 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    "fields": {
-                        "Password": newPassword // আপনার ৩নং স্ক্রিনশটে শুধু এই কলামটিই আছে
-                    }
+                    "fields": { "Password": newPassword }
                 })
             });
 
             if (response.ok) {
                 display.innerText = newPassword;
-                status.style.color = "#00ff00";
-                status.innerText = "Success! Password saved in Airtable.";
+                status.innerText = "DONE!";
+                btn.disabled = false;
             } else {
-                const errData = await response.json();
-                status.style.color = "#ff0000";
-                status.innerText = "Error: " + errData.error.message;
+                status.innerText = "ERROR!";
                 btn.disabled = false;
             }
         } catch (error) {
-            status.style.color = "#ff0000";
-            status.innerText = "Network Error! Try again.";
+            status.innerText = "NETWORK ERROR!";
             btn.disabled = false;
         }
     }
 
     function copyKey() {
         const text = document.getElementById('keyDisplay').innerText;
-        if (text.startsWith("AD-VIP-")) {
+        if (text.includes("AD-VIP-")) {
             navigator.clipboard.writeText(text);
-            alert("Key Copied: " + text);
+            alert("🔥 Key Copied!");
         } else {
-            alert("Generate a key first!");
+            alert("Generate key first!");
         }
     }
 </script>
