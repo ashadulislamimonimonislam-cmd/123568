@@ -169,9 +169,9 @@
         <div class="info-section">
             <span class="info-title">How It Works</span>
             <ul class="feature-list">
-                <li><strong>Generate:</strong> আর্নিং লিংক সম্পন্ন করে ফিরে আসুন।</li>
-                <li><strong>Verify:</strong> স্বয়ংক্রিয়ভাবে জেনারেটর পেজ ওপেন হবে।</li>
-                <li><strong>Limit:</strong> প্রতিবার নতুন কী এর জন্য নতুন করে লিঙ্ক ভিজিট করতে হবে।</li>
+                <li><strong>Generate:</strong> Complete the earning link and return.</li>
+                <li><strong>Verify:</strong> The generator page will open automatically.</li>
+                <li><strong>Limit:</strong> You must visit the link again for each new key.</li>
             </ul>
         </div>
     </div>
@@ -227,19 +227,15 @@
         updateClock();
         document.getElementById('earningBtn').href = EARNING_LINK;
 
-        // চেক: রেফারার এবং কী জেনারেশন স্ট্যাটাস
         const isFromEarning = document.referrer.includes(REQUIRED_DOMAIN);
         const alreadyUsed = sessionStorage.getItem('keyUsed') === 'true';
 
-        // যদি আর্নিং লিংক থেকে আসে এবং এই সেশনে এখনও কী না নিয়ে থাকে
         if (isFromEarning && !alreadyUsed) {
             document.getElementById('generatorPage').style.display = 'block';
             document.getElementById('landingPage').style.display = 'none';
         } else {
-            // অন্যথায় সব সময় ল্যান্ডিং পেজ
             document.getElementById('landingPage').style.display = 'block';
             document.getElementById('generatorPage').style.display = 'none';
-            // নতুন করে শুরু করতে সেশন ক্লিয়ার (ঐচ্ছিক)
             sessionStorage.removeItem('keyUsed');
         }
     };
@@ -265,17 +261,14 @@
                 document.getElementById('keyDisplay').innerText = newKey;
                 genBtn.style.display = 'none';
                 document.getElementById('copyBtn').style.display = 'block';
-
-                // গুরুত্বপূর্ণ: একবার পাসওয়ার্ড পাওয়া হয়ে গেছে
-                // এখন পেজ রিফ্রেশ করলে ইউজারকে আবার আর্নিং লিংকে যেতে হবে
                 sessionStorage.setItem('keyUsed', 'true');
             } else {
-                alert("এয়ারটেবল সার্ভারে সমস্যা! আবার চেষ্টা করুন।");
+                alert("Airtable Server Error! Please try again.");
                 genBtn.disabled = false;
                 genBtn.innerText = "VERIFY NEW KEY";
             }
         } catch (e) {
-            alert("নেটওয়ার্ক সমস্যা! ইন্টারনেট চেক করুন।");
+            alert("Network Error! Please check your internet connection.");
             genBtn.disabled = false;
             genBtn.innerText = "VERIFY NEW KEY";
         }
