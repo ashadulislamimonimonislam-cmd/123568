@@ -169,7 +169,7 @@
             <img src="https://i.supaimg.com/46dbfc30-50e2-42f9-8305-e5d132e1b867.jpg" class="logo-img" alt="Logo">
             <div class="header-text">
                 <span class="badge">SECURE ACCESS PANEL</span>
-                <h2>AD FREE FIRE- Key</h2>
+                <h2>AD FREE FIRE - Key</h2>
             </div>
         </div>
 
@@ -181,7 +181,7 @@
             <div><span class="log-time" class="live-clock-log"></span> Mypdftools Secure Access frontend initialized.</div>
         </div>
 
-        <a id="earningBtn" class="btn">AD GET VIP KEY NOW</a>
+        <a id="earningBtn" class="btn">GET VIP KEY NOW</a>
 
         <div class="info-section">
             <span class="info-title">How It Works</span>
@@ -296,200 +296,6 @@
                 sessionStorage.setItem('keyGenerated', 'true');
                 // ভেরিফিকেশন স্ট্যাটাস ক্লিয়ার যাতে রিফ্রেশ করলে আর জেনারেটর পেজ না পায়
                 sessionStorage.removeItem('isVerified');
-            } else {
-                alert("Server Error!");
-                genBtn.disabled = false;
-                genBtn.innerText = "VERIFY NEW KEY";
-            }
-        } catch (e) {
-            alert("Network Error!");
-            genBtn.disabled = false;
-        }
-    }
-
-    function copyKey() {
-        navigator.clipboard.writeText(document.getElementById('keyDisplay').innerText);
-        alert("✨ Key Copied!");
-    }
-</script>
-</body>
-</html>
-        .feature-list {
-            list-style: none;
-            padding: 0;
-            font-size: 12px;
-            color: #c9d1d9;
-            margin-bottom: 20px;
-        }
-        .feature-list li {
-            margin-bottom: 8px;
-            padding-left: 15px;
-            position: relative;
-        }
-        .feature-list li::before {
-            content: "•";
-            color: #58a6ff;
-            position: absolute;
-            left: 0;
-        }
-
-        .feature-card {
-            background: #161b22;
-            border: 1px solid #30363d;
-            padding: 12px;
-            border-radius: 10px;
-            margin-top: 10px;
-        }
-        .feature-card h4 { margin: 0; color: #58a6ff; font-size: 13px; }
-        .feature-card p { margin: 5px 0 0; font-size: 11px; color: #8b949e; }
-
-        #landingPage, #generatorPage { display: none; }
-        
-        .btn { 
-            background: #238636; 
-            color: #ffffff; 
-            border: none; 
-            padding: 14px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            border-radius: 10px; 
-            width: 100%; 
-            margin-top: 20px;
-            text-transform: uppercase; 
-            text-decoration: none; 
-            display: inline-block; 
-            text-align: center;
-        }
-
-        #keyDisplay { 
-            text-align: center;
-            padding: 15px; 
-            font-size: 20px; 
-            color: #58a6ff; 
-            background: #161b22;
-            border-radius: 10px;
-            margin: 15px 0;
-            border: 1px solid #30363d;
-        }
-    </style>
-</head>
-<body>
-
-    <div id="landingPage" class="container">
-        <div class="header-box">
-            <img src="https://i.supaimg.com/46dbfc30-50e2-42f9-8305-e5d132e1b867.jpg" class="logo-img" alt="Logo">
-            <div class="header-text">
-                <span class="badge">SECURE ACCESS PANEL</span>
-                <h2>AD FREE FIRE - Key</h2>
-            </div>
-        </div>
-
-        <div class="live-time-box">Current Time: <span class="live-clock"></span></div>
-
-        <div class="system-log">
-            <span class="log-header">System Log</span>
-            <div><span class="log-time" class="live-clock-log"></span> Select a region and click "VERIFY NEW KEY" to begin.</div>
-            <div><span class="log-time" class="live-clock-log"></span> Mypdftools Secure Access frontend initialized.</div>
-        </div>
-
-        <a id="earningBtn" class="btn">GET VIP KEY NOW</a>
-
-        <div class="info-section">
-            <span class="info-title">How It Works</span>
-            <ul class="feature-list">
-                <li><strong>Generate:</strong> Select a region and click VERIFY NEW KEY.</li>
-                <li><strong>Verify:</strong> Redirect page par steps complete karo.</li>
-                <li><strong>Return:</strong> Get your key automatically.</li>
-            </ul>
-        </div>
-    </div>
-
-    <div id="generatorPage" class="container">
-        <div class="header-box">
-            <img src="https://i.supaimg.com/46dbfc30-50e2-42f9-8305-e5d132e1b867.jpg" class="logo-img" alt="Logo">
-            <div class="header-text">
-                <span class="badge">ACCESS GRANTED</span>
-                <h2>AD FREE FIRE</h2>
-            </div>
-        </div>
-
-        <div class="live-time-box">Current Time: <span class="live-clock"></span></div>
-
-        <div id="keyDisplay">VERIFIED ACCESS</div>
-        
-        <button id="genBtn" class="btn" onclick="generateKey()">VERIFY NEW KEY</button>
-        <button id="copyBtn" class="btn" style="display:none; background:#1f6feb;" onclick="copyKey()">COPY KEY</button>
-
-        <div class="system-log" style="margin-top: 25px;">
-            <span class="log-header">Server Status</span>
-            <div><span class="log-time" class="live-clock-log"></span> Key generation system online.</div>
-            <div><span class="log-time" class="live-clock-log"></span> Secure session encrypted (256-bit).</div>
-        </div>
-
-        <div class="info-section">
-            <span class="info-title">How It Works</span>
-            <ul class="feature-list">
-                <li><strong>Step 1:</strong> Your identity has been verified.</li>
-                <li><strong>Step 2:</strong> Use the generated key in your tool.</li>
-            </ul>
-
-            <span class="info-title">Popular Features</span>
-            <div class="feature-card">
-                <h4>Compress PDF</h4>
-                <p>Large PDFs ka size kam karo without quality loss.</p>
-            </div>
-            <div class="feature-card">
-                <h4>Merge PDF</h4>
-                <p>Multiple files ko ek hi PDF me merge karo.</p>
-            </div>
-        </div>
-    </div>
-
-<script>
-    const EARNING_LINK = "https://linksgo.in/3i6m";
-    const REQUIRED_DOMAIN = "linksgo.in";
-    const AIRTABLE_TOKEN = "patn7xmqXpUwZql5B.0c757efdff357a4cf8eee80f5e2e28a0ad16e2e84e6d6493ab62a6da54131eae";
-    const BASE_ID = "appbcvyIYXVAZzmom";
-    const TABLE_ID = "tbl1pjDWPEnDOeym5";
-
-    // লাইভ ঘড়ি আপডেট করার ফাংশন
-    function updateClock() {
-        const now = new Date();
-        const timeStr = now.toLocaleTimeString(); // বর্তমান সময় (HH:MM:SS AM/PM)
-        const logTimeStr = `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}]`;
-        
-        document.querySelectorAll('.live-clock').forEach(el => el.innerText = timeStr);
-        document.querySelectorAll('.live-clock-log').forEach(el => el.innerText = logTimeStr);
-    }
-    setInterval(updateClock, 1000); // প্রতি ১ সেকেন্ডে আপডেট হবে
-
-    window.onload = function() {
-        updateClock();
-        document.getElementById('earningBtn').href = EARNING_LINK;
-        if (document.referrer.includes(REQUIRED_DOMAIN)) {
-            document.getElementById('generatorPage').style.display = 'block';
-        } else {
-            document.getElementById('landingPage').style.display = 'block';
-        }
-    };
-
-    async function generateKey() {
-        const genBtn = document.getElementById('genBtn');
-        genBtn.disabled = true;
-        genBtn.innerText = "Verifying...";
-        const newKey = "GUJJU-" + Math.random().toString(36).substring(2, 8).toUpperCase();
-
-        try {
-            const response = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`, {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${AIRTABLE_TOKEN}`, 'Content-Type': 'application/json' },
-                body: JSON.stringify({ "fields": { "Password": newKey } })
-            });
-
-            if (response.ok) {
-                document.getElementById('keyDisplay').innerText = newKey;
-                genBtn.style.display = 'none';
-                document.getElementById('copyBtn').style.display = 'block';
             } else {
                 alert("Server Error!");
                 genBtn.disabled = false;
